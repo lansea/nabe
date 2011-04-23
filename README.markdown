@@ -1,5 +1,7 @@
 # Node Yabe
 
+_[custom module](lib/modules)_
+
 A simple (but yet another) blog engine written in node.js. It basically takes the `articles/` folder full of markdown post and serves them as a website.
 
 h5b [node.js](https://github.com/paulirish/html5-boilerplate-server-configs/blob/master/node.js)(thanks [xonecas](https://github.com/xonecas)!) server configuration is used.
