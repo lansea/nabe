@@ -5,6 +5,6 @@ json = require('./lib/ext/json');
 
 yabe
   .use(json( {foo: 'bar'} ))
-  .listen(config.port);
+  .listen(9599);
 
 console.log('Node server is running! and listening on', config.port);
