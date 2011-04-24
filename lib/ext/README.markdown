@@ -32,6 +32,12 @@ Alternately, any url not previously handled by the main connect layer, if reques
 
     {description: 'a simple example of a pluggable connect layer'}
     
+## Tests
+
+You must have api-easy installed to run the tests. Just run `npm install api-easy` if that's not the case.
+
+Run `vows tests/*.js --spec` to run the basic test suite that quickly validates different json response from the server.
+    
 
 ## Usage
 
