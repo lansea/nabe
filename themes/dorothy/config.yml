@@ -30,5 +30,8 @@ ext:          markdown
 summary:
   max: 150
   delim: \n##
+github:
+  user: mklabs
+  ext: markdown
 
 
