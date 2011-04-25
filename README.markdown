@@ -24,7 +24,7 @@ Right now, this application does the barely minimum, and uses the node filesyste
 * Categories
 * Markdown (via github-flavored-markdown)
 * code syntax highlighting (via prettify)
-* Atom feed
+* rss feed
 * Comments via Disqus
 * simple route => page system
 * github project page (generated remotely from readmes)
@@ -66,7 +66,7 @@ You would then edit the template at will, it has the following structure:
         |
         +- layout.html              # the main site layout, shared by all pages
         |
-        +- feed.xml                 # the basic template for the atom feed
+        +- feed.xml                 # the basic template for the rss feed
         |
         +- pages/                   # pages, such as home, about, etc go here
            |
@@ -242,6 +242,7 @@ The dependencies are placed in the `node_modules` folder to load them as if they
 * disqus integration
 * 404
 * 2-3 themes (with one using sammy)
+* archives
 
 Think about overall structure. using npm, would be nice to just have a templates repo similar to [Dorothy](https://github.com/cloudhead/dorothy) with a basic server.js/config.yml setup.
 
