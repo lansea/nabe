@@ -1,6 +1,6 @@
 Title: GitHub Flavored Markdown
 Author: John Doe
-Date: Apr 24 2011 17:08:00 GMT-0500 (CDT)
+Date: Apr 24 2011 17:08:00 GMT+0200 (CDT)
 Categories: markdown, github
 
 GitHub Flavored Markdown
