@@ -1,4 +1,6 @@
-# node-yabe
+Title: readme, yep readme
+Author: John Doe
+Date: Apr 26 2011 21:14:00 GMT-0500 (CDT)
 
 node-yabe is a git-powered, minimalist blog engine for coders.
 
@@ -36,14 +38,13 @@ Right now, this application does the barely minimum, and uses the node filesyste
 * articles are stored as .markdown files, with embedded metadata (in yaml format).
 * articles are processed through github-flavored markdown converter thus providing you some useful hooks like user/project#1 or [[filename-of-post-to-link-to]].
 * templating is done through node-jqtpl.
-* yabe is built right on top of Connect.
-* yabe was built to take advantage of HTTP caching and uses html5-boilerplate server config startup file (thx xonecas!)
-* yabe was built with services like nodester or amazon ec2 in mind.
+* yabe is built right on top of Connect. It takes advantage of HTTP caching and uses html5-boilerplate server config startup file (thx xonecas!)
+* built with services like nodester or amazon ec2 in mind.
 * comments are handled by disqus
 * individual articles can be accessed through urls such as `/folder/subfolder/blogging-with-yabe` (thus folders can be seen as a way of providing simple hierarchical categories)
 * relatedly, the list of articles in `/folder/subfolder/` can be accessed with the exact same url
 * arbitrary metadata can be included in articles files, and accessed from the templates
-* summaries are generated intelligently by yabe, following the `max` and `delimiter` setting you give it
+* summaries are generated intelligently by yabe, following the `max` and `delimiter` settings you give it
 
 ## startr
 
@@ -51,31 +52,35 @@ Startr is yabe's default template, you can find it in `templates/startr`. It com
 
 ## overview
 
-You would start by installing _node-yabe_, with `npm install node-yabe`, and then forking or
-cloning the `yabis` repo, to get a basic skeleton:
+You would start by installing _node-yabe_, with `npm install node-yabe`, or then forking or
+cloning the `node-yabe` repo, to get a basic skeleton:
 
-    $ git clone git://github.com/mklabs/yabis.git weblog
+    $ git clone git://github.com/mklabs/node-yabe.git weblog
     $ cd weblog/
 
 You would then edit the template at will, it has the following structure:
 
     templates/
-    |
-    +- layout.html          # the main site layout, shared by all pages
-    |
-    +- 404.html             # an hopefully meaningful 404 page
-    |
-    +- feed.xml             # the basic template for the atom feed
-    |
-    +- github.project.html  # page loaded for `/projectname`, it displays the classic README file and general information
-    |
-    +- pages/               # pages, such as home, about, etc go here
-       |
-       +- index.html        # the default page loaded from `/`, it displays the list of articles
-       |
-       +- article.html      # the article (post) partial and page
-       |
-       +- about.html
+      |
+      +- startr/                    # template main folder (defined in config.js)
+        |
+        +- layout.html              # the main site layout, shared by all pages
+        |
+        +- feed.xml                 # the basic template for the atom feed
+        |
+        +- pages/                   # pages, such as home, about, etc go here
+           |
+           +- index.html            # the default page loaded from `/`, it displays the list of articles
+           |
+           +- 404.html              # an hopefully meaningful 404 page
+           |
+           +- article.html          # the article (post) partial and page
+           |
+           +- github.project.html   # page loaded for `/projectname`, it displays the classic README file and general information
+           |
+           +- about.html
+      +- yourtheme/                 # another template main folder
+
        
 ### articles
 
@@ -89,27 +94,29 @@ You could then create a .markdown article file in the `articles/` folder, and ma
     Dorothy lived in the midst of the great Kansas prairies, with Uncle Henry,
     who was a farmer, and Aunt Em, who was the farmer's wife.
 
-If you're familiar with wheat or toto, this should looks familiar. Basically the top of the file is in YAML format,
-and the rest of it is the blog post. They are delimited by an empty line `/\n\n/`, as you can see above.
-None of the information is mandatory, but it's strongly encouraged you specify it.
+If you're familiar with wheat or toto, this should looks familiar. Basically the top of the file is in YAML format, and the rest of it is the blog post. They are delimited by an empty line `/\n\n/`, as you can see above. 
 
-arbitrary metadata can be included in articles files, and accessed from the templates.
+None of the information is mandatory, but it's strongly encouraged you specify it. Arbitrary metadata can be included in articles files, and accessed from the templates.
 
 Articles are processed through github-flavored markdown converter thus providing you some useful hooks like user/project#1 or [[filename-of-post-to-link-to]].
 
 Articles files may be placed in any directory, they're served regardless of where they are located in the repository.
 
-* `/articles/test/a-blog-post` will render `/articles/test/a-blog-post.markdown` file
-* `/articles/test/a-second-blog-post` will render `/articles/test/a-blog-post.markdown` file
-* `/articles/test` will render a list of articles embedded in `articles/test` folder and its subfolders
-* `/articles/a-blog-post` will render `/articles/a-blog-post.markdown` file
-  
+<table>
+  <thead><tr><th>URL</th><th></th></tr></thead>
+  <tbody>
+    <tr><td>/articles/test/a-blog-post</td><td>/articles/test/a-blog-post.markdown file</td></tr>
+    <tr><td>/articles/test/a-second-blog-post</td><td>/articles/test/a-blog-post.markdown file</td></tr>
+    <tr><td>/articles/test</td><td>a list of articles embedded in articles/test folder and its subfolders</td></tr>
+    <tr><td>/articles/a-blog-post</td><td>/articles/a-blog-post.markdown file</td></tr>
+  </tbody>
+</table>
 
 The special page file index.html will be used by default as the entrance page to your blog.
 
 ### pages
 
-pages, such as home, about, etc go in the `templates/pages` folder. Basically, if any files or folders is matching given url, yabe will look for similar files in `pages`, allowing you to render a simple about.html to `/about` url. One can easily add pages just by creating new files in `pages` folder. Just like articles, these files can be embedded in any folder/subfolder.
+pages, such as home, about, etc go in the `templates/pages` folder. Basically, if any file or folder is matching given url, yabe will look for similar files in `pages`, allowing you to render a simple about.html to `/about` url. One can easily add pages just by creating new files in `pages` folder. Just like articles, these files can be embedded in any folder/subfolder.
 
 ### github projects
 
@@ -199,8 +206,7 @@ _todo_
 
 ## configuration
 
-You can configure yabe, by modifying the _config.yml_ file. For example, if you want to set the blog author to 'John Doe',
-you could add or edit `author: John Doe` inside the `config.yml` file. Here are the defaults, to get you started:
+You can configure yabe, by modifying the _config.yml_ file. For example, if you want to set the blog author to 'John Doe', you could add or edit `author: John Doe` inside the `config.yml` file. Here are the defaults, to get you started:
 
     author:     'John Doe'                                # blog author
     title:      'a blog about ...'                        # site title
