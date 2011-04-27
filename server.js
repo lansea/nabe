@@ -9,11 +9,11 @@ github = require('./lib/ext/github');
 yabe
   
   // these custom connects layer may be merged in node-yabe
-  .use(json( {foo: 'bar'} ))
-  
   .use(pages())
   
   .use(github())
+  
+  .use(json( {foo: 'bar'} ))
   
   .use(connect.errorHandler({
     stack: true,
