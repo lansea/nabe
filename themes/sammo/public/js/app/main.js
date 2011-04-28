@@ -110,6 +110,8 @@
       // Set up routes
       this.get('/', delegator('index'));
       this.get(/\/article\/([^\s]+)/, delegator('article'));
+      this.get(/\/tag\/([^\s]+)/, delegator('index'));
+      this.get(/\/category\/([^\s]+)/, delegator('index'));
       this.get('/:page', delegator('page'));
 
     });
