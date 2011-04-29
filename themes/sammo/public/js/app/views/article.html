@@ -24,7 +24,7 @@
     <dd class="cat-links">
       <ul class="post-categories">
       {{each(index, category) article.categories}}
-        <li>${category}</li>
+          <li><a href="/tag/${category}">${category}</a></li>
       {{/each}}
       </ul>
     </dd>
