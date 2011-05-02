@@ -20,13 +20,27 @@
     <dt>Author:</dt>
     <dd class="author vcard">${article.author}</dd>
     
+    {{if article.categories}}
     <dt>Categories:</dt>
-    <dd class="cat-links">
+    <dd>
       <ul class="post-categories">
       {{each(index, category) article.categories}}
         <li><a href="/tag/${category}">${category}</a></li>
       {{/each}}
       </ul>
     </dd>
+    {{/if}}
+    
+    
+    {{if article.revisions}}
+    <dt>Revisions:</dt>
+    <dd>
+      <ul class="post-revisions">
+      {{each(sha, rev) article.revisions}}
+        <li><a href="/${sha}/${article.name}" title="${rev.message}">${rev.date}</a></li>
+      {{/each}}
+      </ul>
+    </dd>
+    {{/if}}
   </dl>
 </div>

@@ -186,37 +186,6 @@ h3.page-links-title {
 	padding-left: 1em;
 }
 
-.page-meta {
-	float: right;
-	background: #f9f9f9;
-	border: 1px solid #f0f0f0;
-}
-
-.page-meta li {
-	margin: 0.25em;
-}
-
-.page-meta li ul {
-	margin: 0 0 0 1em;
-}
-
-.page-meta li {
-	color: #c90;
-}
-
-.page-meta li ul li {
-	color: #999;
-}
-
-.page-meta a {
-	color: #666;
-	text-decoration: none;
-}
-
-.page-meta li.current_page_item a {
-	color: #000;
-}
-
 .entry-meta abbr {
 	border-bottom: none;
 }
@@ -237,7 +206,7 @@ h3.page-links-title {
 }
 
 .entry-meta dd {
-	margin: 0 0 1em;
+	margin: 0 0 0.5em;
 }
 
 .entry-meta ul {
@@ -245,8 +214,12 @@ h3.page-links-title {
 }
 
 .entry-meta li {
-	margin-left: 1.5em;
+	margin-left: 0;
 	color: #8A461B;
+}
+
+.entry-meta ul.post-revisions li{
+  margin-left: 0em;
 }
 
 table {
