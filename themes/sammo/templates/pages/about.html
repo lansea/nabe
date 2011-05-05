@@ -20,16 +20,20 @@
       <h4>Test</h4>
       <h5>Test</h5>
       <h6>Test</h6>
-      
       <h3>config used</h3>
-      {{each config}}
-          <p>${$index}: <em>${$value}</em></p>
+      {{each(key, value) config}}
+        {{if typeof value == 'object'}}
+          <p>${key}</p>
+          <ul>
+          {{each(so, funky) value}}
+            <li>${so}: <em>${funky}</em></li>
+          {{/each}}
+          </ul>
+        {{else}}
+        <p>${key}: <em>${value}</em></p>
+        {{/if}}
       {{/each}}
-      
-      <h3>context used</h3>
-      {{each context}}
-          <p>${$index}: <em>${$value}</em></p>
-      {{/each}}
+  
       
     </section>
     
