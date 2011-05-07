@@ -18,9 +18,10 @@
 #
 author:       John Doe
 title:        nabe
-url:          /
-description:  not another blog engine.. well.. yes it is..
-format:       f
+description:  'not another blog engine.. well.. yes it is..'
+format:       F
+culture:      'de'
+theme:        satorii
 disqus:       ''
 ext:          markdown
 summary:
