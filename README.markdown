@@ -260,7 +260,7 @@ You can configure nabe, by modifying the _config.yml_ file. For example, if you 
     author:     'John Doe'                                # blog author
     title:      'a blog about ...'                        # site title
     url:        'example.com'                             # site root URL, namely used to control crossdomain request
-    format:     'YYYY-mm-dd'                              # date format for articles
+    format:     'yyyy-mm-dd'                              # date format for articles
     culture:    'en'                                      # ideally, any valid jquery.global culture. either en, fr, ja, ru, es for now
     disqus:     ''                                        # disqus id
     summary:

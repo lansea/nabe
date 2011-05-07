@@ -33,7 +33,7 @@ look like \*emphasis\*. Markdown lists look like, well, lists. Even
 blockquotes look like quoted passages of text, assuming you've ever
 used email.
  
- 
+<!--more-->
  
 <h3 id="html">Inline HTML</h3> 
  

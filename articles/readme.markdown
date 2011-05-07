@@ -9,6 +9,8 @@ node-yabe is a git-powered, minimalist blog engine for coders.
 
 A simple (but yet another) blog engine written in node.js. It basically takes the `articles/` folder full of markdown post and serves them as a website.
 
+<!--more-->
+
 h5b [node.js](https://github.com/paulirish/html5-boilerplate-server-configs/blob/master/node.js)(thanks [xonecas](https://github.com/xonecas)!) server configuration is used.
 
 Yabe mainly due to my lack of inspiration when it comes to chose a name. I chose to create yet another blog engine. It is a reference to this [play](http://www.playframework.org/documentation/1.0.1/guide1#aTheprojecta) framework sample project.

@@ -9,9 +9,7 @@
 #
 #     author:     John Doe                                # blog author
 #     title:      a blog about ...                        # site title
-#     url:        example.com                             # site root URL, namely used to control crossdomain request
-#     root:       index                                   # page to load on /
-#     date:       YYYY-mm-dd                              # date format for articles
+#     date:       yyyy-mm-dd                              # date format for articles
 #     disqus:     ''                                      # disqus id, or ''
 #     ext:        markdown                                # file extension for articles
 #     summary:                                            # length of article summary and delimiter
@@ -23,13 +21,11 @@ author:       John Doe
 title:        Sammo
 url:          /
 description:  Say hello to Sammo, a theme crafted with a tiny Sammy.js application that use pushState to handle page transitions
-root:         index
-date:         YYYY-mm-dd
+format:       f
 disqus:       ''
 ext:          markdown
 summary:
-  max: 150
-  delim: \n##
+  delim: '<!--more-->|##'
 github:
   user: mklabs
   ext: markdown
