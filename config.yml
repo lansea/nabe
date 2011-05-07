@@ -13,14 +13,13 @@
 #     disqus:     ''                                      # disqus id, or ''
 #     ext:        markdown                                # file extension for articles
 #     summary:                                            # length of article summary and delimiter
-#       max: 150
 #       delim: \n##
 #
 #
 author:       John Doe
-title:        Sammo
+title:        nabe
 url:          /
-description:  Say hello to Sammo, a theme crafted with a tiny Sammy.js application that use pushState to handle page transitions
+description:  not another blog engine.. well.. yes it is..
 format:       f
 disqus:       ''
 ext:          markdown
