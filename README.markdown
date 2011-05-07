@@ -58,15 +58,15 @@ This is possible thanks to [node-git](https://github.com/creationix/node-git), a
 
 ## how it works
 
-* content is entirely managed through git; it falls back to the file if not available
+* content is entirely managed through git; it falls back to the file system if not available
 * built with services like nodester or amazon ec2 in mind
 * articles are stored as .markdown files, with embedded metadata (in yaml format)
-* articles are processed through using [github-flavored-markdown](https://github.com/isaacs/github-flavored-markdown) converter
+* articles are passed through [github-flavored-markdown](https://github.com/isaacs/github-flavored-markdown) converter
 * templating is done through node-jqtpl by default
 * nabe is built right on top of Connect. It takes advantage of HTTP caching and uses html5-boilerplate server config startup file.
 * comments are handled by disqus
-* individual articles can be accessed through urls such as `/folder/subfolder/blogging-with-nabe` (thus folders can be seen as a way of providing simple hierarchical categories)
-* relatedly, the list of articles in `/folder/subfolder/` can be accessed with the exact same url
+* individual articles can be accessed through urls such as `/folder/subfolder/blogging-with-nabe` that would render `bloging-with-nabe.markdown` file in `/folder/subfolder` directory.
+* relatedly, the list of articles in `/folder/subfolder/` can be accessed as categories with `/category/folder/subfolder` URL (thus folders can be seen as a way of providing simple hierarchical categories).
 * arbitrary metadata can be included in articles files, and accessed from the templates
 * summaries are generated following the `delimiter` settings
 
@@ -123,6 +123,12 @@ You could then create a .markdown article file in the `articles/` folder, and ma
     Date: Apr 24 2011 17:08:00 GMT+0200 (CDT)
 
     There's no `sleep()` in JavaScript.. Nor does it have goto, Duh.
+    
+
+Tags are defined using the `Categories` property
+
+    Categories: node, readme, blog
+
 
 If you're familiar with wheat or toto, this should looks familiar. Basically the top of the file is in YAML format, and the rest of it is the blog post. They are delimited by an empty line `/\n\n/`, as you can see above. 
 
@@ -131,18 +137,6 @@ None of the information is mandatory, but it's strongly encouraged you specify i
 Articles are processed through [github-flavored-markdown](https://github.com/isaacs/github-flavored-markdown) converter thus providing you some useful hooks like mklabs/nabe#1 or mklabs/nabe@da9eee105bd4becb8dd2973bf660509b30ee2be2. Snippets of code are passed through [Prettify](http://code.google.com/p/google-code-prettify/) syntax highlighting.
 
 Articles files may be placed in any directory, they're served regardless of where they are located in the `articles` directory (and a request on a valid dir would list all articles in that directory and any subdirectories, if any markdown file is available for that URL)
-
-<table>
-  <thead><tr><th>URL</th><th></th></tr></thead>
-  <tbody>
-    <tr><td>/articles/test/a-blog-post</td><td>/articles/test/a-blog-post.markdown file</td></tr>
-    <tr><td>/articles/test/a-second-blog-post</td><td>/articles/test/a-blog-post.markdown file</td></tr>
-    <tr><td>/articles/test</td><td>a list of articles embedded in articles/test folder and its subfolders</td></tr>
-    <tr><td>/articles/a-blog-post</td><td>/articles/a-blog-post.markdown file</td></tr>
-  </tbody>
-</table>
-
-The special page file index.html will be used by default as the entrance page to your blog.
 
 ### pages
 
