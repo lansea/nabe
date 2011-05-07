@@ -92,7 +92,7 @@ ul#nav li.current_page_item a:active{color:#fff; text-decoration:none; backgroun
     margin: auto;
 }
 
-.content-loading, #content {
+.content-loading {
   -moz-transition: all 1s ease-out;  
      -o-transition: all 1s ease-out;  
 -webkit-transition: all 1s ease-out;  

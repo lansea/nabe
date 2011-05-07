@@ -3,12 +3,13 @@
 // Run `vows tests/*.js`(you must have easy api-easy installed -> `npm install api-easy`)
 
 var APIeasy = require('api-easy'),
-    assert = require('assert');
+    assert = require('assert'),
+    nabe = require('../lib/nabe');
     
 var suite = APIeasy.describe('json api test suite');
 
 suite.discuss('When using application/json in any request')
-  .use('localhost', 3001)
+  .use('localhost', nabe.config.port)
   .setHeader('Accept', 'application/json')
   .setHeader('Content-Type', 'application/json')
   
@@ -23,7 +24,7 @@ suite.discuss('When using application/json in any request')
       
       articles.forEach(function(art, i) {
         assert.isString(art.author);
-        assert.isNumber(+new Date(art.date));
+        assert.isString(art.date);
         assert.isArray(art.categories);
         assert.isString(art.markdown);
         assert.isString(art.name);
@@ -39,7 +40,7 @@ suite.discuss('When using application/json in any request')
       assert.ok(result);
       assert.ok(art);
       assert.isString(art.author);
-      assert.isNumber(+new Date(art.date));
+      assert.isString(art.date);
       assert.isArray(art.categories);
       assert.isString(art.markdown);
       assert.isString(art.name);

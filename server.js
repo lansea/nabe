@@ -1,5 +1,5 @@
 // Just a basic server setup for this site
-var nabe = require('./lib/node-yabe'),
+var nabe = require('./lib/nabe'),
 config = nabe.config;
 
 nabe.listen(config.port);
