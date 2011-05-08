@@ -223,9 +223,13 @@ One can think of easily reuse server-side templates to provide a front-end appli
 
 #### tests
 
-There's a basic tests suite to make sure it's working properly, you can run them if you want. You must have [vows](http://vowsjs.org/) and [api-easy](http://indexzero.github.com/api-easy/) installed to run the tests. Just run `npm install api-easy` if that's not the case.
+There's a basic tests suite to make sure it's working properly, you can run them if you want.
 
-Run `vows tests/*.js --spec` to run the simple test suite that quickly validates different json response from the server (must be started).
+    npm test nabe
+
+It runs `vows tests/*.js --spec` to run the simple test suite that quickly validates different json response from the server.    
+
+Relatedly, you can set `npm config set npat true`. Enable this flag to run tests of every module you install (then install with --no-npat).
 
 ## deployment
 
