@@ -1,8 +1,10 @@
 {
   "author": "Mickael Daniel",
   "name": "nabe",
+  "version": "0.0.1",
   "description": "git-powered, minimalist blog engine for coders",
-  "version": "0.2.0",
+  "keywords" : ["blog", "git"],
+  "tags": ["git","node","howtonode","blog"],
   "homepage": "https://github.com/mklabs/nabe",
   "repository": {
     "type": "git",
