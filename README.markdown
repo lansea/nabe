@@ -37,10 +37,6 @@ This project respectfully uses code from and thanks the authors of:
 
     npm install nabe
 
-You can install nabe with --npat set, it'll install devDependencies as well and run the test. Install will fail if tests fail.
-
-    npm install nabe --npat
-
 You would start by forking or cloning the [nabe-demo](https://github.com/mklabs/nabe-demo) repo, to get a basic skeleton.
     
     git clone git://github.com/mklabs/nabe-demo.git weblog
@@ -227,15 +223,20 @@ One can think of easily reuse server-side templates to provide a front-end appli
            markdown: '...' }
         ]
 
-#### tests
+## tests
 
 There's a basic tests suite to make sure it's working properly, you can run them if you want.
 
     npm test nabe
 
-It runs `vows tests/*.js --spec` to run the simple test suite that quickly validates different json response from the server. 
+It runs `vows tests/*.js --spec` to run the simple test suite that quickly validates different json response from the server.
 
-Relatedly, you can set `npm config set npat true`. Enable this flag to run tests of every module you install (then install with --no-npat).
+You'll need to install devDependencies to be able to run the test suite
+
+  npm install nabe --dev
+  npm test nabe
+
+Relatedly, you can set `npm config set npat true`. Enable this flag to run tests of every module you install (then install with --no-npat if needed).
 
 ## deployment
 
