@@ -16,12 +16,14 @@
 #       delim: \n##
 #
 #
-author:       John Doe
+author:       John Pat
 title:        nabe
-description:  'not another blog engine.. well.. yes it is..'
+description:  'npat <3'
+articleDir:   fixtures/posts
+themeDir:     fixtures/themes
+theme:        test
 format:       F
 culture:      'de'
-theme:        satorii
 disqus:       ''
 ext:          markdown
 summary:

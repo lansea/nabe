@@ -1,10 +1,16 @@
 // ## Basic APIeasy suite to quickly test json api layer
 
 // Run `vows tests/*.js`(you must have easy api-easy installed -> `npm install api-easy`)
+    
+process.chdir(__dirname);
 
 var APIeasy = require('api-easy'),
     assert = require('assert'),
     nabe = require('../lib/nabe');
+
+nabe.listen(nabe.config.port);
+
+console.log('Node server is running! and listening on', nabe.config.port);
     
 var suite = APIeasy.describe('json api test suite');
 
@@ -18,6 +24,7 @@ suite.discuss('When using application/json in any request')
     .expect(200)
     .expect('should respond with valid articles list', function(err, res, body) {
       var result = JSON.parse(body), articles = result.articles;
+      
       assert.ok(articles);
       assert.isArray(articles);
       assert.ok(articles.length);
@@ -57,4 +64,5 @@ suite.discuss('When using application/json in any request')
   .get('/this/route/does/not/exist/')
     .expect(200, {description: 'a simple example of a pluggable connect layer'})
     .export(module);
+    
     

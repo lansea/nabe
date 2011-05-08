@@ -23,5 +23,9 @@
     "jqtpl": "0.1.0",
     "yaml": "0.1.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "api-easy": "0.2.0",
+    "vows": "0.5.8"
+  },
+  "scripts":{"test":"vows tests/*.js --spec"}
 }
