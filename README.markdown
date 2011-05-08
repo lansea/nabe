@@ -24,9 +24,8 @@ This project respectfully uses code from and thanks the authors of:
   * [testnabe.nodester.com](http://testnabe.nodester.com/)
 * cloud foundry
   * [nabe.cloudfoundry.com](http://nabe.cloudfoundry.com/)
-* amazon ec2
-  * [ec2-46-137-98-7.eu-west-1.compute.amazonaws.com](http://ec2-46-137-98-7.eu-west-1.compute.amazonaws.com)
   
+    
 ## Quickstart
 
 using npm
@@ -112,6 +111,21 @@ You would then edit the template at will, it has the following structure:
            +- whatever.html         # same goes for whatever page, loaded for `/whatever` url
            |
       +- yourtheme/                 # another theme folder
+      
+### configuration
+
+You can configure nabe, by modifying the _config.yml_ file. For example, if you want to set the blog author to 'John Doe', you could add or edit `author: John Doe` inside the `config.yml` file. Here are the defaults, to get you started:
+
+    author:     'John Doe'                                # blog author
+    title:      'a blog about ...'                        # site title
+    url:        'example.com'                             # site root URL, namely used to control crossdomain request
+    format:     'yyyy-mm-dd'                              # date format for articles
+    culture:    'en'                                      # ideally, any valid jquery.global culture. either en, fr, ja, ru, es for now
+    disqus:     ''                                        # disqus id
+    summary:
+      delim:    '\n##'                                    # summary delimiter
+
+Check out [`/docs/config.html`](http://mklabs.github.com/nabe/docs/config.html) for more information.
 
        
 ### articles
@@ -207,9 +221,11 @@ One can think of easily reuse server-side templates to provide a front-end appli
            markdown: '...' }
         ]
 
-It even has some basic tests to make sure it's working properly and you can run them if you want. You must have api-easy installed to run the tests. Just run `npm install api-easy` if that's not the case.
+#### tests
 
-Then run `vows tests/*.js --spec` to run the simple test suite that quickly validates different json response from the server (must be started).
+There's a basic tests suite to make sure it's working properly, you can run them if you want. You must have [vows](http://vowsjs.org/) and [api-easy](http://indexzero.github.com/api-easy/) installed to run the tests. Just run `npm install api-easy` if that's not the case.
+
+Run `vows tests/*.js --spec` to run the simple test suite that quickly validates different json response from the server (must be started).
 
 ## deployment
 
@@ -246,21 +262,6 @@ Then, change the `server.js` or `config.yml` (by adding a port property if neces
     git push nodester master
     
 Test [http://testnabe.nodester.com](http://testnabe.nodester.com).
-
-## configuration
-
-You can configure nabe, by modifying the _config.yml_ file. For example, if you want to set the blog author to 'John Doe', you could add or edit `author: John Doe` inside the `config.yml` file. Here are the defaults, to get you started:
-
-    author:     'John Doe'                                # blog author
-    title:      'a blog about ...'                        # site title
-    url:        'example.com'                             # site root URL, namely used to control crossdomain request
-    format:     'yyyy-mm-dd'                              # date format for articles
-    culture:    'en'                                      # ideally, any valid jquery.global culture. either en, fr, ja, ru, es for now
-    disqus:     ''                                        # disqus id
-    summary:
-      delim:    '\n##'                                    # summary delimiter
-
-Check out [`/docs/config.html`](http://mklabs.github.com/nabe/docs/config.html) for more information.
 
 ## Thanks!
 
