@@ -1,0 +1,35 @@
+#
+### configure nabe
+#
+#
+#### Add your settings here
+#
+# `set [setting:] [value]`
+#
+#
+#     author:     John Doe                                # blog author
+#     title:      a blog about ...                        # site title
+#     date:       yyyy-mm-dd                              # date format for articles
+#     disqus:     ''                                      # disqus id, or ''
+#     ext:        markdown                                # file extension for articles
+#     summary:                                            # length of article summary and delimiter
+#       delim: \n##
+#
+#
+author:       John Pat
+title:        nabe
+description:  'npat <3'
+articleDir:   fixtures/posts
+themeDir:     fixtures/themes
+theme:        test
+format:       F
+culture:      'de'
+disqus:       ''
+ext:          markdown
+summary:
+  delim: '<!--more-->|##'
+github:
+  user: mklabs
+  ext: markdown
+
+

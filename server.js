@@ -1,7 +1,7 @@
 // Just a basic server setup for this site
-var yabe = require('./lib/node-yabe'),
-config = require('./lib/config');
+var nabe = require('./lib/nabe'),
+config = nabe.config;
 
-yabe.listen(config.port);
+nabe.listen(config.port);
 
 console.log('Node server is running! and listening on', config.port);

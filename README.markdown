@@ -1,42 +1,176 @@
-# Node Yabe
+# nabe
 
-A simple (but yet another) blog engine written in node.js. It basically takes the `articles/` folder full of markdown post and serves them as a website.
+**nabe** is a git-powered, minimalist blog engine for coders.
 
-h5b [node.js](https://github.com/paulirish/html5-boilerplate-server-configs/blob/master/node.js)(thanks [xonecas](https://github.com/xonecas)!) server configuration is used.
+A simple (but yet another) blog engine written in node. It basically takes the articles/ folder full of markdown post and serves them as a website. Posts are passed through [Markdown](http://daringfireball.net/projects/markdown/syntax), and snippets of code are passed through [Prettify](http://code.google.com/p/google-code-prettify/) syntax highlighting.
 
-Yabe mainly due to my lack of inspiration when it comes to chose a name. I chose to create yet another blog engine. It is a reference to this [play](http://www.playframework.org/documentation/1.0.1/guide1#aTheprojecta) framework sample project.
+A blog is simply a Git repository that adhere to a specific format. Posts can be edited in a number of ways depending on your needs. If not run through a valid git repo to provide article revisions and history, it falls back to the file system.
 
-Right now, this application does the barely minimum, and uses the node filesystem API to get articles content. This is a work in progress (and mostly just fun).
+This project respectfully uses code from and thanks the authors of:
 
-## Dependencies
+* [connect](https://github.com/senchalabs/connect)
+* [wheat](https://github.com/creationix/wheat)
+* [findit](https://github.com/substack/node-findit)
+* [github-flavored-markdown](https://github.com/isaacs/github-flavored-markdown)
+* [git-fs](https://github.com/creationix/node-git)
+* [jquery-global](https://github.com/jquery/jquery-global)
+* [jqtpl](https://github.com/kof/node-jqtpl)
+* [yaml](https://github.com/visionmedia/js-yaml)
+* [h5b-server-config for node](https://github.com/paulirish/html5-boilerplate-server-configs/blob/master/node.js)
+  
+## features
 
-The dependencies are placed in the `node_modules` folder to load them as if they are native modules. no package.json yet
-
-* [connect](http://github.com/senchalabs/connect) 1.2.1
-* [mime](http://github.com/bentomas/node-mime) 1.2.1
-* [node-jqtpl](http://github.com/kof/node-jqtpl.git) 0.1.0
-* markdown and prettify node module are node ports of showdown and prettify syntax highlighter by [creationix](https://github.com/creationix) for the [Wheat](https://github.com/creationix/wheat) blog engine.
-
-## Routes exposed
+* Posts (...)
+* Tags/Categories
+* Markdown (using [github-flavored-markdown](https://github.com/isaacs/github-flavored-markdown) converter)
+* code syntax highlighting ([Prettify](http://code.google.com/p/google-code-prettify/))
+* revisions through git commits
+* date formating using [jquery-global](https://github.com/jquery/jquery-global)
+* rss feed
+* Comments via Disqus
+* simple route => page system
+* github project page (generated remotely from readmes)
+* rather comprehensive json api (mostly just GETs but still)
+  
     
-* `GET /` rendering index.html view. a simple list of available post.
-* `GET /article/:post/` rendering a full article. :post is the filename, minus the markdown suffix.
-* `GET /feed.xml` providing a basic rss feed
+## Quickstart
+
+    npm install nabe
+
+You can install nabe with --npat set, it'll install devDependencies as well and run the test. Install will fail if tests fail.
+
+    npm install nabe --npat
+
+You would start by forking or cloning the [nabe-demo](https://github.com/mklabs/nabe-demo) repo, to get a basic skeleton.
     
-## Views
+    git clone git://github.com/mklabs/nabe-demo.git weblog
+    cd weblog/
+    node server.js
+    
+Boom, navigate to http://localhost:5678 to see nabe in action. Check `config.xml` for other options.
 
-Views are defined within their own 'themes' `folder/` within `themes/` one.
+Basically you need to run nabe within a git repo. Make sure to git [pack-refs](http://www.kernel.org/pub/software/scm/git/docs/git-pack-refs.html) and have some commits to test revisions and history. Note that this is **not** mandatory it falls back to the file system if either git or `.git/pack-refs` were not available.
 
-* index.html that lists articles with a short intro
-* articles.html actually used when viewing an article
-* feed.xml provides a simple and really basic rss feed
-* layout.html is used to decorate index/articles templates
+This is possible thanks to [node-git](https://github.com/creationix/node-git), a thin wrapper around the command-line git command to read files out of a git repository as if they were local files.
 
-The template engine used is [node-jqtpl](https://github.com/kof/node-jqtpl) by [kof](https://github.com/kof/), a node port of jQuery Templates plugin.
 
-## Sidebars
+## demo
 
-a custom sidebar file allows you to define a custom placeholder that you can later use in your templates, heavily inspired by [gollum](http://github.com/github/gollum). It's not as brilliant and is roughly implemented but you can use a custom `_sidebar.markdown` file in `artciles` folder, its content would be available in your template files like so:
+* nodester
+  * [testnabe.nodester.com](http://testnabe.nodester.com/)
+* cloud foundry
+  * [nabe.cloudfoundry.com](http://nabe.cloudfoundry.com/)
+
+## how it works
+
+* content is entirely managed through git; it falls back to the file system if not available
+* built with services like nodester or amazon ec2 in mind
+* articles are stored as .markdown files, with embedded metadata (in yaml format)
+* articles are passed through [github-flavored-markdown](https://github.com/isaacs/github-flavored-markdown) converter
+* templating is done through node-jqtpl by default
+* nabe is built right on top of Connect. It takes advantage of HTTP caching and uses html5-boilerplate server config startup file.
+* comments are handled by disqus
+* individual articles can be accessed through urls such as `/folder/subfolder/blogging-with-nabe` that would render `bloging-with-nabe.markdown` file in `/folder/subfolder` directory.
+* relatedly, the list of articles in `/folder/subfolder/` can be accessed as categories with `/category/folder/subfolder` URL (thus folders can be seen as a way of providing simple hierarchical categories).
+* arbitrary metadata can be included in articles files, and accessed from the templates
+* summaries are generated following the `delimiter` settings
+
+## documentation
+
+Apart from the overview provided in this README.md file, nabe uses [docco](http://jashkenas.github.com/docco/) to provide comprehensive source code documentation. Check out [`/docs/nabe.html`](http://mklabs.github.com/nabe/docs/nabe.html) for more information.
+
+## overview
+
+You would start by installing _nabe_, with `npm install nabe` or then forking or
+cloning the [nabe-demo](https://github.com/mklabs/nabe-demo) repo, to get a basic skeleton.
+
+    git clone git://github.com/mklabs/nabe-demo.git weblog
+    cd weblog/
+    node server.js
+
+You would then edit the template at will, it has the following structure:
+    
+    articles/                       # default posts folder (defined in config.yml)
+    |
+    themes/                         # default themes folder (defined in config.yml)
+      |
+      +- default/                   # theme folder (defined in config.yml)
+        |
+        +- public/                  # static files go here (js, css, img)
+        |
+        +- layout.html              # the main site layout, shared by all pages
+        |
+        +- index.html               # the default page loaded from `/`, it displays the list of articles
+        |
+        +- article.html             # the article (post) partial and page
+        |
+        +- feed.xml                 # the basic template for the rss feed
+        |
+        +- 404.html                 # the default 404 page
+        |
+        +- github.html              # page loaded from `/a-github-project`, following the github.user config
+        |
+        +- pages/                   # pages, such as about, contact etc go here
+           |
+           +- about.html            # the page loaded for `/about` url
+           |
+           +- whatever.html         # same goes for whatever page, loaded for `/whatever` url
+           |
+      +- yourtheme/                 # another theme folder
+      
+### configuration
+
+You can configure nabe, by modifying the _config.yml_ file. For example, if you want to set the blog author to 'John Doe', you could add or edit `author: John Doe` inside the `config.yml` file. Here are the defaults, to get you started:
+
+    author:     'John Doe'                                # blog author
+    title:      'a blog about ...'                        # site title
+    url:        'example.com'                             # site root URL, namely used to control crossdomain request
+    format:     'yyyy-mm-dd'                              # date format for articles
+    culture:    'en'                                      # ideally, any valid jquery.global culture. either en, fr, ja, ru, es for now
+    disqus:     ''                                        # disqus id
+    summary:
+      delim:    '\n##'                                    # summary delimiter
+
+Check out [`/docs/config.html`](http://mklabs.github.com/nabe/docs/config.html) for more information.
+
+       
+### articles
+
+You could then create a .markdown article file in the `articles/` folder, and make sure it has the following format:
+
+    Title: What a node weekend !
+    Author: John Doe
+    Date: Apr 24 2011 17:08:00 GMT+0200 (CDT)
+
+    There's no `sleep()` in JavaScript.. Nor does it have goto, Duh.
+    
+
+Tags are defined using the `Categories` property
+
+    Categories: node, readme, blog
+
+
+If you're familiar with wheat or toto, this should looks familiar. Basically the top of the file is in YAML format, and the rest of it is the blog post. They are delimited by an empty line `/\n\n/`, as you can see above. 
+
+None of the information is mandatory, but it's strongly encouraged you specify it. Arbitrary metadata can be included in articles files, and accessed from the templates.
+
+Articles are processed through [github-flavored-markdown](https://github.com/isaacs/github-flavored-markdown) converter thus providing you some useful hooks like mklabs/nabe#1 or mklabs/nabe@da9eee105bd4becb8dd2973bf660509b30ee2be2. Snippets of code are passed through [Prettify](http://code.google.com/p/google-code-prettify/) syntax highlighting.
+
+Articles files may be placed in any directory, they're served regardless of where they are located in the `articles` directory (and a request on a valid dir would list all articles in that directory and any subdirectories, if any markdown file is available for that URL)
+
+### pages
+
+pages, such as home, about, etc go in the `templates/pages` folder. Basically, if any file or folder is matching given url, nabe will look for similar files in `pages`, allowing you to render a simple about.html to `/about` url. 
+
+One can easily add pages just by creating new files in `pages` folder.
+
+### github projects
+
+Any projects that is hosted on github and publicly available (eg. not private), can have its own place on the generated site. Depending on settings defined in config.yml (user, ext), nabe will get the content of the classic README file for this particular project. A request to `/a-badass-project`, assuming you have `a-badass-project` hosted on github, will render `github.project.html` with readme's content.
+
+### sidebars
+
+Sidebar file allow you to define a simple sidebar that you can later use in your templates and pages, heavily inspired by [gollum](http://github.com/github/gollum). It's not as brilliant and is roughly implemented but you can use a custom `_sidebar.markdown` file in your `artciles` or `templates/pages` folder, its content would be available in your template files like so:
 
     {{if has_sidebar}}
     <div class="article-sidebar">
@@ -44,32 +178,107 @@ a custom sidebar file allows you to define a custom placeholder that you can lat
     </div>
     {{/if}}
 
-## A bit of configuration
 
-`config.js` file acts as a really basic configuration hook. It should expose a simple hash object:
+### json api
 
-    module.exports = {
-      // control cross domain if you want. allow cross domain (for your subdomains) disallow other domains.
-      hostAdress: 'localhost',
+A simple JSON connect layer is listening for incoming request with `Accept` header set to `application/json` that, instead of serving html output (delivered by templates files), will respond the exact same model provided to the views as json objects. It basically means that any request done with something like `$.getJSON('./valid/route')` would get in return a json result (and one can easily think of building neat single-page app with framework like Sammy.js or Backbone). The sammo theme available in this repo uses [Sammy.js](https://github.com/quirkey/sammy) with [pushState](https://github.com/quirkey/sammy/tree/non-hash) to handle page transitions.
 
-      // server port
-      port: 3001,
+One can think of easily reuse server-side templates to provide a front-end application.
 
-      // themes folder path
-      themeDir: 'themes',
+#### Examples on `./`
 
-      // theme folder name
-      theme: 'testr'
-    };
+
+    { 
+      config: 
+       { hostAddress: 'localhost|nodester.com|amazonaws',
+         port: 9606,
+         articleDir: 'articles',
+         themeDir: 'themes',
+         theme: 'sammo',
+         format: 'F',
+         culture: 'fr',
+         github: { user: 'mklabs', ext: 'markdown' },
+         author: 'John Doe',
+         title: 'Sammo',
+         url: '/',
+         description: 'Say hello to Sammo, a theme crafted with a tiny Sammy.js application that use pushState to handle page transitions',
+         root: 'index',
+         date: 'YYYY-mm-dd',
+         disqus: '',
+         ext: 'markdown',
+         summary: { max: 150, delim: '\\n##' } } },
+      articles: 
+       [ { title: 'readme, yep readme',
+           author: 'John Doe',
+           date: 'mercredi 27 avril 2011 04:14:00',
+           categories: [ 'node', 'readme', 'blog' ],
+           markdown: '<p>nabe is a git-powered, minimalist blog engine for coders.</p>',
+           name: 'readme' },
+         { title: 'GitHub Flavored Markdown',
+           author: 'John Doe',
+           date: 'dimanche 24 avril 2011 17:08:00',
+           categories: [ 'markdown' ],,
+           markdown: '<h1>GitHub Flavored Markdown</h1>\n\n<p><em>View ...',
+           name: 'syntax/github-flavored-markdown' },
+         { title: 'Markdown loves you',
+           author: 'John Doe',
+           date: 'jeudi 7 avril 2011 04:14:00',
+           categories: [Object],
+           markdown: '...' }
+        ]
+
+#### tests
+
+There's a basic tests suite to make sure it's working properly, you can run them if you want.
+
+    npm test nabe
+
+It runs `vows tests/*.js --spec` to run the simple test suite that quickly validates different json response from the server. 
+
+Relatedly, you can set `npm config set npat true`. Enable this flag to run tests of every module you install (then install with --no-npat).
+
+## deployment
+
+### on your own server
+
+nave is built on top of Connect and exports itself as a Connect sever: _server.js_.
+
+    var nabe = require('./lib/nabe'),
+    config = nabe.config;
+
+    nabe.listen(config.port);
+    
+One can add connect layers, or layers that adds or alter nabe's feature with `nabe.use()`.
+
+### on nodester
+
+nabe was designed to work well with [nodester](http://nodester.com). Deploying on nodester is really easy, just ask for a nodester access by following these [instructions](http://nodester.com), create a nodester app with `nodester app create`, and push with `git push nodester master` (_replace testnabe with your application name_)
+
+    git clone http://github.com/mklabs/nabe-demo testnabe
+    cd testnabe
+    nodester app create testnabe
+    nodester app info testnabe
+
+You'll get in return two important informations: port and gitrepo.
+
+First copy paste the gitrepo from `nodester app info` and add it as a remote repository.
+
+    git remote add nodester ec2-user@nodester.com:/replace/this/with/yours/1234-a123456789bc123d01e9c55c6f6af5a7.git
+    
+Then, change the `server.js` or `config.yml` (by adding a port property if necessary) file to change the port to the one nodester has assigned to your app. Also, you'll want to change hostAddress to `testnabe.nodester.com` (or whatever name you're using, it's namely used to control cross domain request).  Once done, simply git add, commit and push to get your app started
+
+    git add .
+    git commit -m "Changed port to nodester one"
+    git push nodester master
+    
+Test [http://testnabe.nodester.com](http://testnabe.nodester.com).
 
 ## Thanks!
 
-Tim Caswell([creationix](Tim Caswell)) and [Wheat](https://github.com/creationix/wheat), a really beautiful piece of node hacking. The markdown and pretiffy modules are directly coming from Wheat, the whole is heavily based on Wheat which inspired me this experiments, mostly for fun. I'm using wheat since a few months now to blog and I really think that solutions like Jekyll or Wheat, both based on markdown (textile is also pretty good) are ideal and really pleasant to work with.
+Tim Caswell([creationix](Tim Caswell)) and [Wheat](https://github.com/creationix/wheat), a really beautiful piece of node hacking. The pretiffy modules are directly coming from Wheat, the whole is heavily based on Wheat which inspired me this experiments. I'm using wheat since a few months now to blog and I really think that solutions like Jekyll or Wheat, both based on markdown (textile is also pretty good) are ideal and really pleasant to work with.
 
+Also, a lot of ideas and inspiration is coming from:
 
-
-
-
-
-
-
+* [gollum](http://github.com/github/gollum) - [Tom Preston-Werner](https://github.com/mojombo), [Rick Olson](https://github.com/technoweenie)
+* [toto](https://github.com/cloudhead/toto) - [Alexis Sellier](https://github.com/cloudhead)
+* [scanty](https://github.com/adamwiggins/scanty) - [Adam Wiggins](https://github.com/adamwiggins)
