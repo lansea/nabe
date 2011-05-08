@@ -1,5 +1,5 @@
 /**
- * satorii theme for node-yabe, an adaptation to the well-known satorii theme
+ * satorii theme for nabe, an adaptation to the well-known satorii theme
  * for wordpress.
  *
  * Credit is left where credit is due. Much inspiration was taken from:
@@ -436,5 +436,5 @@ input[type=text],input[type=password],textarea {
 }
 
 
-/** yabe changes **/
+/** nabe changes **/
 .page .entry-content {width: 100%;}

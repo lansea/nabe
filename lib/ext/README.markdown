@@ -1,14 +1,14 @@
 
 # Custom module
 
-A simple example of how to build a custom connect layer on top of node-yabe.
+A simple example of how to build a custom connect layer on top of nabe.
 
 This branch adds a little hook just before rendering on which you could subscribe to.
 
-    var mediator = require('../mediator');
+    var renderer = require('../renderer');
     
     
-    mediator.on('yabe.render', function(res, data){
+    renderer.on('nabe.render', function(res, data){
       var a = data.headers ? data.headers.accept : undefined;
       if(a && /application\/json/.test(a)) {
         res.renderJSON(data);
@@ -18,7 +18,7 @@ This branch adds a little hook just before rendering on which you could subscrib
 
 The json module acting as an example basically allows to expose model with raw json objects instead of serving template files.
 
-We could then request yabe like so:
+We could then request nabe like so:
 
     $.getJSON('/', function(data){console.log(data);});
     
@@ -26,7 +26,7 @@ We could then request yabe like so:
     // where :post is the filename, minus the markdown suffix.
     $.getJSON('/article/:post', function(data){console.log(data);});
 
-Actually, each routes exposed by node-yabe, if requested with `application/json` will render a response with raw json.
+Actually, each routes exposed by nabe, if requested with `application/json` will render a response with raw json.
 
 Alternately, any url not previously handled by the main connect layer, if requested with `application/json`, will render the following response:
 
@@ -42,10 +42,10 @@ Run `vows tests/*.js --spec` to run the basic test suite that quickly validates 
 ## Usage
 
     // Just a basic server setup
-    var yabe = require('./lib/node-yabe'),
-    config = require('./lib/config');
+    var nabe = require('nabe'),
+    config = nabe.config;
 
-    yabe
+    nabe
       .use(require('./lib/modules/json')( {foo: 'bar'} ))
       .listen(config.port);
 

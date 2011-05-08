@@ -1,7 +1,7 @@
 satorii
 =======
 
-satorii theme for node-yabe, an adaptation to the well-known satorii theme for wordpress.
+satorii theme for nabe, an adaptation to the well-known satorii theme for wordpress.
 
 Credit is left where credit is due. Much inspiration was taken from:
 
