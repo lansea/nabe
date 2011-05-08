@@ -4,7 +4,7 @@
 
 A simple (but yet another) blog engine written in node. It basically takes the articles/ folder full of markdown post and serves them as a website. Posts are passed through [Markdown](http://daringfireball.net/projects/markdown/syntax), and snippets of code are passed through [Prettify](http://code.google.com/p/google-code-prettify/) syntax highlighting.
 
-A blog is simply Git repository that adhere to a specific format. Posts are passed through [Markdown](http://daringfireball.net/projects/markdown/syntax) and can be edited in a number of ways depending on your needs. If not run through a valid git repo to provide article revisions and history, it falls back to the file system.
+A blog is simply a Git repository that adhere to a specific format. Posts can be edited in a number of ways depending on your needs. If not run through a valid git repo to provide article revisions and history, it falls back to the file system.
 
 This project respectfully uses code from and thanks the authors of:
 
@@ -17,30 +17,7 @@ This project respectfully uses code from and thanks the authors of:
 * [jqtpl](https://github.com/kof/node-jqtpl)
 * [yaml](https://github.com/visionmedia/js-yaml)
 * [h5b-server-config for node](https://github.com/paulirish/html5-boilerplate-server-configs/blob/master/node.js)
-
-## demo
-
-* nodester
-  * [testnabe.nodester.com](http://testnabe.nodester.com/)
-* cloud foundry
-  * [nabe.cloudfoundry.com](http://nabe.cloudfoundry.com/)
   
-    
-## Quickstart
-
-using npm
-
-    npm install nabe
-    git clone git://github.com/you/yourrepo.git
-    cd yourrepo
-    node server.js
-
-Boom. Navigate to http://localhost:5678 to see nabe in action. Check `config.xml` for other options.
-
-Basically you need to run nabe within a git repo. Make sure to git [pack-refs](http://www.kernel.org/pub/software/scm/git/docs/git-pack-refs.html) and have some commits to test revisions and history. Note that this is **not** mandatory it falls back to the file system if either git or `.git/pack-refs` were not available.
-
-This is possible thanks to [node-git](https://github.com/creationix/node-git), a thin wrapper around the command-line git command to read files out of a git repository as if they were local files.
-
 ## features
 
 * Posts (...)
@@ -54,6 +31,35 @@ This is possible thanks to [node-git](https://github.com/creationix/node-git), a
 * simple route => page system
 * github project page (generated remotely from readmes)
 * rather comprehensive json api (mostly just GETs but still)
+  
+    
+## Quickstart
+
+    npm install nabe
+
+You can install nabe with --npat set, it'll install devDependencies as well and run the test. Install will fail if tests fail.
+
+    npm install nabe --npat
+
+You would start by forking or cloning the [nabe-demo](https://github.com/mklabs/nabe-demo) repo, to get a basic skeleton.
+    
+    git clone git://github.com/mklabs/nabe-demo.git weblog
+    cd weblog/
+    node server.js
+    
+Boom, navigate to http://localhost:5678 to see nabe in action. Check `config.xml` for other options.
+
+Basically you need to run nabe within a git repo. Make sure to git [pack-refs](http://www.kernel.org/pub/software/scm/git/docs/git-pack-refs.html) and have some commits to test revisions and history. Note that this is **not** mandatory it falls back to the file system if either git or `.git/pack-refs` were not available.
+
+This is possible thanks to [node-git](https://github.com/creationix/node-git), a thin wrapper around the command-line git command to read files out of a git repository as if they were local files.
+
+
+## demo
+
+* nodester
+  * [testnabe.nodester.com](http://testnabe.nodester.com/)
+* cloud foundry
+  * [nabe.cloudfoundry.com](http://nabe.cloudfoundry.com/)
 
 ## how it works
 
@@ -69,7 +75,7 @@ This is possible thanks to [node-git](https://github.com/creationix/node-git), a
 * arbitrary metadata can be included in articles files, and accessed from the templates
 * summaries are generated following the `delimiter` settings
 
-## Documentation
+## documentation
 
 Apart from the overview provided in this README.md file, nabe uses [docco](http://jashkenas.github.com/docco/) to provide comprehensive source code documentation. Check out [`/docs/nabe.html`](http://mklabs.github.com/nabe/docs/nabe.html) for more information.
 
@@ -227,7 +233,7 @@ There's a basic tests suite to make sure it's working properly, you can run them
 
     npm test nabe
 
-It runs `vows tests/*.js --spec` to run the simple test suite that quickly validates different json response from the server.    
+It runs `vows tests/*.js --spec` to run the simple test suite that quickly validates different json response from the server. 
 
 Relatedly, you can set `npm config set npat true`. Enable this flag to run tests of every module you install (then install with --no-npat).
 
