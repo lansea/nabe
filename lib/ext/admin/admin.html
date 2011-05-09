@@ -1,13 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  
+  <link rel="stylesheet" type="text/css" href="/css/h5b.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/nabe.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/nabe.editor.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/nabe.dialog.css" media="all">
+  <title>admin - edit ${article.title}</title>
+</head>
+<body class="nabe-admin edit">
 
-<div class="page">
-  <h2>Admin</h2>
-  <p>well soon enough</p>
+  <div class="nabe-admin-header">
+    <h1>edit <strong>${article.title}</strong></h1>
+    <p>Ctrl-M, Command-M to switch in full screen mode</p>
+    <p>Ctrl-P, Command-P to preview</p>
+  </div>
   
-  <ul>
-    <li>./</li>
-    <li>/edit/filename</li>
-    <li>/create</li>
-    <li>Dooh..</li>
-  </ul>
+  <p class="breadcrumb"><a href="/admin/">admin</a> / <a href="/admin/edit">edit</a> / ${article.name}<p>
   
-</div>
+  <div class="nabe-admin-content">
+    <div class="nabe-editor">
+      <form name="nabe-editor" action="/create" method="post">
+        <fieldset class="nabe-editor-fields">
+          <div class="nabe-editor-function-bar">
+            <div class="nabe-editor-theme-selector">        
+              <select class="nabe-editor-theme" name="theme">
+                <option selected="selected" value="ace/theme/textmate">Textmate</option>
+                <option value="ace/theme/clouds">Clouds</option>
+                <option value="ace/theme/clouds_midnight">Clouds Midnight</option>
+                <option value="ace/theme/cobalt">Cobalt</option>
+                <option value="ace/theme/dawn">Dawn</option>
+                <option value="ace/theme/idle_fingers">idleFingers</option>
+                <option value="ace/theme/kr_theme">krTheme</option>
+                <option value="ace/theme/mono_industrial">Mono Industrial</option>
+                <option value="ace/theme/monokai">Monokai</option>
+                <option value="ace/theme/pastel_on_dark">Pastel on dark</option>
+                <option value="ace/theme/twilight">Twilight</option>
+                <option value="ace/theme/eclipse">Eclipse</option>
+                <option value="ace/theme/merbivore">Merbivore</option>
+                <option value="ace/theme/merbivore_soft">Merbivore Soft</option>
+                <option value="ace/theme/vibrant_ink">Vibrant Ink</option>
+              </select>
+              <label for="theme">Theme</label>
+            </div>
+          </div>
+          <pre class="nabe-editor-body" data-markup-lang="markdown">${article.markdown}</pre>
+          
+          <input type="submit" class="nabe-editor-submit" value="Preview" title="Preview current changes">
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+
+  <script src="/js/libs/jquery.js"></script>
+  <script src="/js/libs/jquery.tmpl.js"></script>
+  <script src="/js/libs/showdown.js"></script>
+  <script src="/js/libs/ace2.js"></script>
+  <script src="/js/langs/mode-markdown.js"></script>
+  <script src="/js/themes/theme-all.js"></script>
+
+  <script src="/js/nabe.dialog.js"></script>
+  <script src="/js/nabe.editor.js"></script>
+
+  <script>
+  $(function(){
+    $('pre').nabeEditor();
+  });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  
+  <link rel="stylesheet" type="text/css" href="/css/h5b.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/nabe.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/nabe.editor.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/nabe.dialog.css" media="all">
+  <title>admin - list of posts</title>
+</head>
+<body class="nabe-admin">
+
+  <div class="nabe-admin-header">
+    <h1>admin <strong>list of posts</strong></h1>
+  </div>
+  
+  <p>Posts are the entries that display in reverse chronological order on your home page.</p>
+
+
+  <p>To edit a post, check the list below and click on the file you'll want to edit.</p>
+  
+  <table>
+    <thead><tr><th>Name</th><th>Path</th></tr></thead>
+    <tbody>
+      {{each(index, article) articles}}
+      <tr>
+        <td>${article.title} - <span class="small"><a href="/article/${article.name}">(link)</a></span></td>
+        <td><a href="/admin/edit/${article.name}">${article.name}</a></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  
+  <script src="/js/libs/jquery.js"></script>
+  <script src="/js/libs/jquery.tmpl.js"></script>
+  <script src="/js/libs/showdown.js"></script>
+  <script src="/js/libs/ace2.js"></script>
+  <script src="/js/langs/mode-markdown.js"></script>
+  <script src="/js/themes/theme-all.js"></script>
+
+  <script src="/js/nabe.dialog.js"></script>
+  <script src="/js/nabe.editor.js"></script>
+
+  <script>
+  $(function(){
+
+  
+    var table = $('table'),
+    tr = table.find('tr');
+  
+    table.delegate('tbody tr', 'hover', function() {
+      tr.removeClass('hover');
+      $(this).addClass('hover');
+    });
+  });
+  </script>
+
+</body>
+</html>
