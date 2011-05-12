@@ -10,55 +10,80 @@
   <link rel="stylesheet" type="text/css" href="/css/nabe.dialog.css" media="all">
   <title>admin - edit ${article.title}</title>
 </head>
-<body class="nabe-admin edit">
+<body>
 
-  <div class="nabe-admin-header">
-    <h1>edit <strong>${article.title}</strong></h1>
-    <p>Ctrl-M, Command-M to switch in full screen mode</p>
-    <p>Ctrl-P, Command-P to preview</p>
-  </div>
-  
-  <p class="breadcrumb"><a href="/admin/">admin</a> / <a href="/admin/edit">edit</a> / ${article.name}<p>
-  
-  <div class="nabe-admin-content">
-    <div class="nabe-editor">
-      <form name="nabe-editor" action="/create" method="post">
-        <fieldset class="nabe-editor-fields">
-          <div class="nabe-editor-function-bar">
-            <div class="nabe-editor-theme-selector">        
-              <select class="nabe-editor-theme" name="theme">
-                <option selected="selected" value="ace/theme/textmate">Textmate</option>
-                <option value="ace/theme/clouds">Clouds</option>
-                <option value="ace/theme/clouds_midnight">Clouds Midnight</option>
-                <option value="ace/theme/cobalt">Cobalt</option>
-                <option value="ace/theme/dawn">Dawn</option>
-                <option value="ace/theme/idle_fingers">idleFingers</option>
-                <option value="ace/theme/kr_theme">krTheme</option>
-                <option value="ace/theme/mono_industrial">Mono Industrial</option>
-                <option value="ace/theme/monokai">Monokai</option>
-                <option value="ace/theme/pastel_on_dark">Pastel on dark</option>
-                <option value="ace/theme/twilight">Twilight</option>
-                <option value="ace/theme/eclipse">Eclipse</option>
-                <option value="ace/theme/merbivore">Merbivore</option>
-                <option value="ace/theme/merbivore_soft">Merbivore Soft</option>
-                <option value="ace/theme/vibrant_ink">Vibrant Ink</option>
-              </select>
-              <label for="theme">Theme</label>
-            </div>
-          </div>
-          <pre class="nabe-editor-body" data-markup-lang="markdown">${article.markdown}</pre>
-          
-          <input type="submit" class="nabe-editor-submit" value="Preview" title="Preview current changes">
-        </fieldset>
-      </form>
+  <div class="nabe-admin">
+    <div class="navbar-container">
+      <h1>Admin</h1>
+      <ul>
+        <li>
+          <form><input type="search" /></form>
+        </li>
+        <li class="navbar-item-selected"><a href="/admin">Posts</a></li>
+        <li><a href="/admin">Pages (todo)</a></li>
+        <li><a href="/admin">Configuration (todo)</a></li>
+      </ul>
+    </div>
+    
+    <div class="nabe-mainview">
+      <div class="nabe-admin-header">
+        <h1>edit <strong>${article.title}</strong></h1>
+      </div>
+      
+      <p class="breadcrumb"><a href="/admin/">admin</a> / <a href="/admin/">{{if mode}}create{{else}}edit{{/if}}</a> / <a href="/admin/edit/${article.name}">${article.name}</a><p>
+
+      <div class="nabe-admin-content edit">
+        <div class="nabe-editor">
+          <form name="nabe-editor" action="/admin/edit/${article.name}" method="post">
+            <fieldset class="nabe-editor-fields">
+              <div class="nabe-editor-function-bar">
+                <div class="nabe-editor-function-hint">
+                  {{if msg}}
+                  <p class="msg"><em>${msg}</em></p>
+                  {{/if}}
+                  <p class="command {{if msg}}hidden{{/if}}"><em>Ctrl-M</em>, <em>Command-M</em> to switch in full screen mode. <em>Ctrl-P</em>, <em>Command-P</em> to preview. <em>Ctrl-S</em>, <em>Command-S</em> to save.</p>
+                </div> 
+              
+                <div class="nabe-editor-theme-selector">
+                  <select class="nabe-editor-theme" name="theme">
+                    <option selected="selected" value="ace/theme/textmate">Textmate</option>
+                    <option value="ace/theme/clouds">Clouds</option>
+                    <option value="ace/theme/clouds_midnight">Clouds Midnight</option>
+                    <option value="ace/theme/cobalt">Cobalt</option>
+                    <option value="ace/theme/dawn">Dawn</option>
+                    <option value="ace/theme/idle_fingers">idleFingers</option>
+                    <option value="ace/theme/kr_theme">krTheme</option>
+                    <option value="ace/theme/mono_industrial">Mono Industrial</option>
+                    <option value="ace/theme/monokai">Monokai</option>
+                    <option value="ace/theme/pastel_on_dark">Pastel on dark</option>
+                    <option value="ace/theme/twilight">Twilight</option>
+                    <option value="ace/theme/eclipse">Eclipse</option>
+                    <option value="ace/theme/merbivore">Merbivore</option>
+                    <option value="ace/theme/merbivore_soft">Merbivore Soft</option>
+                    <option value="ace/theme/vibrant_ink">Vibrant Ink</option>
+                  </select>
+                  <label for="theme">Theme</label>
+                </div>
+              </div>
+              
+              <div class="nabe-editor-wrapper relative">
+                <pre class="nabe-editor-body ace_editor ace-tm" data-markup-lang="markdown">${article.markdown}</pre>
+              </div>
+              <textarea name="post[body]" class="hidden"></textarea>
+              <input type="hidden" name="post[commit]" />
+              <a href="/admin/preview/${article.name}" class="nabe-editor-bt nabe-editor-preview" title="Preview">Preview</a>
+              <input type="submit" class="nabe-editor-bt" value="Save" title="Save current changes">
+            </fieldset>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
-
 
   <script src="/js/libs/jquery.js"></script>
   <script src="/js/libs/jquery.tmpl.js"></script>
   <script src="/js/libs/showdown.js"></script>
-  <script src="/js/libs/ace2.js"></script>
+  <script src="/js/libs/ace.js"></script>
   <script src="/js/langs/mode-markdown.js"></script>
   <script src="/js/themes/theme-all.js"></script>
 
@@ -67,7 +92,17 @@
 
   <script>
   $(function(){
-    $('pre').nabeEditor();
+    $('.nabe-admin-content').nabeEditor();
+
+    var msg = $('.msg'), command = $('.command'),
+    gitMsg = function gitMsg(){
+      msg.animate({opacity: 0}, {duration: 2000, complete: function() {
+        msg.addClass('hidden');
+        command.css({opacity: 0}).removeClass('hidden').animate({opacity: 1}, {duration: 1000});
+      }});  
+    };
+
+    setTimeout(gitMsg, 5000);
   });
   </script>
 

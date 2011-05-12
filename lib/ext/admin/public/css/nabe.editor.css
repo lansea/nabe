@@ -15,6 +15,13 @@
   padding: 0 0 1.1em 0;
 }
 
+.nabe-editor-function-bar .nabe-editor-function-hint {
+	display: block;
+	float: left;
+	padding: 0 0 2.1em 0;
+	font-weight: bolder;
+}
+
 .nabe-editor .nabe-editor-function-bar .nabe-editor-theme-selector select {  
   background-color: #f9f9f9;
   border: 1px solid transparent;
@@ -52,22 +59,21 @@
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.8em;
   margin: 1em 0 0.4em;
-  padding: 0.5em; /* I don't really like mixing pct & em here… */
+  padding: 0.5em;
+  overflow: hidden;
 }
 
-.nabe-editor input.nabe-editor-submit {
+.nabe-editor-bt {
   background-color: #f7f7f7;
   border: 1px solid #d4d4d4;
   color: #333;
   cursor: pointer;
   display: block;
   float: left;
-  font-size: 1.2em;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: bold;
   margin: 1em;
   padding: 0.4em 1em;
-
   text-shadow: 0 1px 0 #fff;
 
   filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#f4f4f4', endColorstr='#ececec');
@@ -79,7 +85,11 @@
   -webkit-border-radius: 3px;
 }
 
-.nabe-editor input.nabe-editor-submit:hover {
+.nabe-editor .nabe-editor-bt {
+  font-size: 1.2em;
+}
+
+.nabe-editor-bt:hover {
   background: #3072b3;
   border-color: #518cc6 #518cc6 #2a65a0;
   color: #fff;
@@ -110,4 +120,11 @@
 
 .nabe-editor .relative {
   position: relative;
+}
+
+.nabe-dialog form input {
+  border: 1px solid #DDD;
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  padding: .7em;
+  width: 95%;
 }
