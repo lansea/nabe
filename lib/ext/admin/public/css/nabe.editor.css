@@ -35,8 +35,7 @@
  
   border-radius: 0.5em;
   -moz-border-radius: 0.5em;
-  -webkit-border-radius: 0.5em; 
-  -moz-outline: none;
+  -webkit-border-radius: 0.5em;
 }
 
 .nabe-editor .nabe-editor-function-bar .nabe-editor-theme-selector label {

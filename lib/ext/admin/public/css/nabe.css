@@ -27,7 +27,18 @@ body a{text-decoration:none;}
 .nabe-admin blockquote{margin:1em 0;border-left:5px solid #ddd;padding-left:.6em;color:#555;}
 .nabe-admin dt{font-weight:bold;margin-left:1em;}
 .nabe-admin dd{margin-left:2em;margin-bottom:1em;}
-.nabe-admin pre{margin:1em 0;font-size:12px;background-color:#eee;border:1px solid #ddd;padding:5px;line-height:1.5em;color:#444;overflow:auto;-webkit-box-shadow:rgba(0,0,0,0.07) 0 1px 2px inset;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}
+.nabe-admin pre{margin:1em 0;font-size:12px;background-color:#eee;border:1px solid #ddd;padding:5px;line-height:1.5em;color:#444;overflow:auto;
+     -moz-box-shadow: rgba(0,0,0,0.07) 0 1px 2px inset; /* FF3.5+ */
+  -webkit-box-shadow: rgba(0,0,0,0.07) 0 1px 2px inset; /* Saf3.0+, Chrome */
+          box-shadow: rgba(0,0,0,0.07) 0 1px 2px inset; /* Opera 10.5, IE9, Chrome 10+ */
+          
+   -moz-border-radius: 3px; /* FF1+ */
+-webkit-border-radius: 3px; /* Saf3-4, iOS 1+, Android 1.5+ */
+        border-radius: 3px; /* Opera 10.5, IE9, Saf5, Chrome, FF4 */
+
+/* useful if you don't want a bg color from leaking outside the border: */        
+-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+}
 .nabe-admin pre::-webkit-scrollbar, .ace_editor .ace_sb::-webkit-scrollbar{height:8px;width:8px;}
 .nabe-admin pre::-webkit-scrollbar-track-piece, .ace_editor .ace_sb::-webkit-scrollbar-track-piece{margin-bottom:10px;background-color:#e5e5e5;border-bottom-left-radius:4px 4px;border-bottom-right-radius:4px 4px;border-top-left-radius:4px 4px;border-top-right-radius:4px 4px;}
 .nabe-admin pre::-webkit-scrollbar-thumb:vertical, .ace_editor .ace_sb::-webkit-scrollbar-thumb:vertical{height:25px;background-color:#ccc;-webkit-border-radius:4px;-webkit-box-shadow:0 1px 1px rgba(255,255,255,1);}
@@ -59,7 +70,16 @@ body a{text-decoration:none;}
 
 
 /* scrollbars */
-::-webkit-scrollbar, .ace_editor .ace_sb::-webkit-scrollbar{height:8px;width:8px;}
+::-
+background-color: #444444;
+background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#999999)); 
+background-image: -webkit-linear-gradient(top, #444444, #999999); 
+background-image:    -moz-linear-gradient(top, #444444, #999999); 
+background-image:     -ms-linear-gradient(top, #444444, #999999); 
+background-image:      -o-linear-gradient(top, #444444, #999999); 
+background-image:         linear-gradient(top, #444444, #999999);
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#444444', EndColorStr='#999999'); 
+-scrollbar, .ace_editor .ace_sb::-webkit-scrollbar{height:8px;width:8px;}
 ::-webkit-scrollbar-track-piece, .ace_editor .ace_sb::-webkit-scrollbar-track-piece{margin-bottom:10px;background-color:#e5e5e5;border-bottom-left-radius:4px 4px;border-bottom-right-radius:4px 4px;border-top-left-radius:4px 4px;border-top-right-radius:4px 4px;}
 ::-webkit-scrollbar-thumb:vertical, .ace_editor .ace_sb::-webkit-scrollbar-thumb:vertical{height:25px;background-color:#ccc;-webkit-border-radius:4px;-webkit-box-shadow:0 1px 1px rgba(255,255,255,1);}
 ::-webkit-scrollbar-thumb:horizontal, .ace_editor .ace_sb::-webkit-scrollbar-thumb:horizontal{width:25px;background-color:#ccc;-webkit-border-radius:4px;}
@@ -67,14 +87,22 @@ body a{text-decoration:none;}
 /* navbar */
 .navbar-container {
   border-right: 1px solid #c6c9ce;
-  background: -webkit-linear-gradient(rgba(234,238,243,0.2),#f0f0f0),
-    -webkit-linear-gradient(left,#dedede,#dedede 97%,#d3d7db);
+  background-color: #dedede;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#dedede), to(#f0f0f0)); 
+  background-image: -webkit-linear-gradient(top, #dedede, #f0f0f0); 
+  background-image:    -moz-linear-gradient(top, #dedede, #f0f0f0); 
+  background-image:     -ms-linear-gradient(top, #dedede, #f0f0f0); 
+  background-image:      -o-linear-gradient(top, #dedede, #f0f0f0); 
+  background-image:         linear-gradient(top, #dedede, #f0f0f0);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#dedede', EndColorStr='#f0f0f0'); 
+
   bottom: 0;
   left: 0;
   top: 0;
   width: 266px;
   position: absolute;
 }
+
 .navbar-container h1 {
   color: #53637d;
   font-size: 200%;
@@ -109,8 +137,22 @@ body a{text-decoration:none;}
 }
 
 .navbar-container ul li.navbar-item-selected {
-  -webkit-box-shadow: 0px 1px 0px #f7f7f7;
-  background: -webkit-linear-gradient(left,#ededed,#ededed 97%,#d9d9d9);
+
+ -moz-box-shadow: 0px 1px 0px #f7f7f7; 
+-webkit-box-shadow: 0px 1px 0px #f7f7f7; 
+      box-shadow: 0px 1px 0px #f7f7f7; 
+
+  
+  background-color: #fefefe;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#ededed)); 
+  background-image: -webkit-linear-gradient(top, #fefefe, #ededed); 
+  background-image:    -moz-linear-gradient(top, #fefefe, #ededed); 
+  background-image:     -ms-linear-gradient(top, #fefefe, #ededed); 
+  background-image:      -o-linear-gradient(top, #fefefe, #ededed); 
+  background-image:         linear-gradient(top, #fefefe, #ededed);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#d9d9d9', EndColorStr='#ededed'); 
+
+  
   border-bottom: 1px solid #ccc;
   border-top: 1px solid #ccc;
   color: black;
@@ -146,3 +188,13 @@ ul.nabe-buttons li {
   margin: 0 1em;
 }
 
+
+input[type="search"] {
+  -webkit-appearance: searchfield;
+  -moz-appearance: searchfield;
+  box-sizing: border-box;
+  
+  color: #999;
+  font-size: 0.8em;
+  
+}

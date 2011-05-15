@@ -17,7 +17,9 @@
       <h1>Admin</h1>
       <ul>
         <li>
-          <form><input type="search" /></form>
+          <form action="/admin/search/articles/" class="nabe-admin-search" method="post">
+            <input type="search" name="q" placeholder="search for" />
+          </form>
         </li>
         <li class="navbar-item-selected"><a href="/admin">Posts</a></li>
         <li><a href="/admin">Pages (todo)</a></li>
@@ -43,7 +45,7 @@
         <tbody>
           {{each(index, article) articles}}
           <tr>
-            <td>${article.title} <span class="small"><a href="/article/${article.name}">(link)</a></span></td>
+            <td><a href="/admin/edit/${article.name}">${article.title}</a> <span class="small"><a href="/article/${article.name}">(link)</a></span></td>
             <td>${article.date}</td>
             <td>${article.author}</td>
             <td><a href="/admin/edit/${article.name}">${article.name}</a></td>
@@ -63,35 +65,7 @@
 
   <script src="/js/nabe.dialog.js"></script>
   <script src="/js/nabe.editor.js"></script>
-
-  <script>
-  $(function(){
-
-  
-    var table = $('table'),
-    tr = table.find('tr'),
-    newpost = $('.nabe-buttons').find('a[href="/admin/create"]');
-    dialog = $(document.body).nabeDialog().data('nabeDialog');
-  
-    table.delegate('tbody tr', 'hover', function() {
-      tr.removeClass('hover');
-      $(this).addClass('hover');
-    });
-    
-    dialog.on('submitDialog', function(e, seriaform) {
-      document.location = '/admin/create/' + seriaform.match(/file=(.+)/)[1];
-    });
-    
-    newpost.bind('click', function() {
-      dialog.open({
-        title: 'Create new post',
-        markup: '<form><input type="text" name="file" autocomplete="off" placeholder="Create new post" /><form>'
-      });
-      return false;
-    });
-    
-  });
-  </script>
+  <script src="/js/index.js"></script>
 
 </body>
 </html>
