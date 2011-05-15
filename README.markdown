@@ -2,7 +2,7 @@
 
 **nabe** is a git-powered, minimalist blog engine for coders.
 
-A blog is simply a Git repository that adhere to a specific format. Posts can be edited in a number of ways depending on your needs. If not run through a valid git repo, it won't break and will fallback to the file system but i'll miss most of neat features that Git provides such as articles' revision and history, search using `git grep`, ...
+A blog is simply a Git repository that adhere to a specific format. Posts can be edited in a number of ways depending on your needs. If not run through a valid git repo, it won't break and will fallback to the file system but i'll miss most of the neat features that Git provides such as articles' revision and history, search using `git grep`, ...
 
 You'll usually write your posts in your favorite text editor, with your favorite markup (which is most likely [Markdown](http://daringfireball.net/projects/markdown/syntax), isn't it?). Then save the post's file, `git add/commit` the post, and then `git push origin master`.
 
@@ -75,7 +75,7 @@ This project respectfully uses code from and thanks the authors of:
 * content is entirely managed through git; it falls back to the file system if not available
 * articles are stored as .markdown files, with embedded metadata (in yaml format)
 * articles are passed through [github-flavored-markdown](https://github.com/isaacs/github-flavored-markdown) converter
-* templating is done through [jqtpl](https://github.com/kof/node-jqtpl) by default (plans are underway to make it possible to easily the template engine used internally, so that you can use your favorite one.)
+* templating is done through [jqtpl](https://github.com/kof/node-jqtpl) by default (plans are underway to make it possible to easily change the template engine used internally, so that you can use your favorite one.)
 * nabe is built right on top of Connect. It takes advantage of HTTP caching and uses html5-boilerplate server config startup file.
 * comments are handled by disqus
 * individual articles can be accessed through urls such as `/folder/subfolder/blogging-with-nabe` that would render `bloging-with-nabe.markdown` file in `/folder/subfolder` directory.
