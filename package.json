@@ -1,13 +1,13 @@
 {
-  "author": "Mickael Daniel",
-  "name": "nabe",
+  "author": "lansea",
+  "name": "nlog",
   "version": "0.0.1",
   "description": "git-powered, minimalist blog engine for coders",
   "keywords" : ["blog", "git"],
-  "homepage": "https://github.com/mklabs/nabe",
+  "homepage": "https://github.com/lansea/nabe",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mklabs/nabe.git"
+    "url": "git://github.com/lansea/nabe.git"
   },
   "main": "lib/nabe",
   "engines": {
